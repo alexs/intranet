@@ -1,0 +1,47 @@
+<p>
+  <strong>Titulo:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @article.desc %>
+</p>
+
+<p>
+  <strong>Información adicional:</strong>
+  <%= @article.other %>
+</p>
+
+<p>
+  <strong>¿Tiene vigencia?:</strong>
+  <%= !@article.due_date.nil? && @article.due_date == true ? "Sí" : "No" %>
+</p>
+
+<p>
+  <strong>Inicio de la publicación:</strong>
+  <%= l @article.start_date unless @article.start_date.nil?%>
+</p>
+
+<p>
+  <strong>Fin de la publicación:</strong>
+  <%= l @article.end_date unless @article.end_date.nil? %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= article_status @article.status_id %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= article_priority @article.priority %>
+</p>
+
+<p>
+  <strong>Solicitado por:</strong>
+  <%= @article.requested_by %>
+</p>
+
+<%= link_to 'Modificar', edit_article_path(@article), :class => "btn btn-warning btn-sm" %> |
+<%= link_to 'Regresar', articles_path, :class => "btn btn-info btn-sm" %>

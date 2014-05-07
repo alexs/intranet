@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
-  root :to => "home#index"
+  resources :articles
+
+  root :to => "articles#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
 end

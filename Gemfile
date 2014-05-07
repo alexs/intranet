@@ -13,6 +13,9 @@ gem 'devise'
 gem 'pg'
 gem 'rolify'
 gem 'therubyracer', :platform=>:ruby
+gem 'carrierwave'
+gem 'bootstrap-datepicker-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

@@ -1,7 +1,5 @@
-class AddNameToUsers < ActiveRecord::Migration
+class RolifyCreateRoles < ActiveRecord::Migration
   def change
-    add_column :users, :name, :string
-
     create_table(:roles) do |t|
       t.string :name
       t.references :resource, :polymorphic => true

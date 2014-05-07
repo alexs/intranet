@@ -1,0 +1,105 @@
+<%= form_for @article, :html => {:class => 'form-horizontal', :role => "form" }  do |f|  %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %>, verifica por favor que los siguientes datos sean válidos:</h2>
+
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :title, :class => "form-control" %>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :desc, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <%= f.text_area :desc, :class => "form-control", :rows => "4" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :other, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <%= f.text_area :other, :class => "form-control", :rows => "2" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :due_date, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="checkbox">
+        Sí <%= f.radio_button(:due_date, true) %> No <%= f.radio_button(:due_date, false) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_date, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+      <div class="input-group date">
+        <%= f.text_field :start_date, :class => "form-control", "data-behaviour"=>'datepicker'  %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :end_date, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+      <div class="input-group date">
+        <%= f.text_field :end_date, :class => "form-control", "data-behaviour"=>'datepicker'  %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status_id, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+      <%= f.select :status_id, { "Solicitado" => "1", "Aprobado" => "2", "No aprobado" => "3", "Publicado" => "4"},{},{:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :priority, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+       <%= f.select :priority, { "Alta" => "1", "Normal" => "2", "Baja" => "3"},{:selected => @article.priority.nil? ? "2" : @article.priority },{:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :requested_by, :class => "col-sm-2 control-label" %>
+    <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :requested_by, :class => "form-control"%>
+    </div>
+  </div>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Guardar", :class => "btn btn-success btn-lg" %>
+    </div>
+  </div>
+
+
+
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.input-group.date').datepicker({
+      format: "dd/mm/yyyy",
+      language: "es",
+      autoclose: true
+    });
+  })
+</script>
